@@ -10,9 +10,15 @@ const app = express();
 const path =  require('path')
 const PORT = process.env.PORT || 3500;
 
+//custome middleware
+app.use((req, res, next) => {
+    console.log(req.method, req.path)
+})
+
 //This is how you apply middleware
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
+//All static routes should be put in the public folder
 app.use(express.static(path.join(__dirname, '/public'))); // serve static files from public folder
 
 //('^/$|/index.html', (req, res) : must begin with a slash, end with a slash or index,html
