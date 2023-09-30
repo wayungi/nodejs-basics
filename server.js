@@ -41,10 +41,20 @@ app.get('^/$|oldpage(.html)?', (req, res) => { //oldpage does not exists
     res.redirect(301, 'index'); // 301 - permamnent redirect
 });
 
+//==================================
+
 // routes are navigated like a waterfall, so the not found route should be last
-app.get('/*', (req, res) => {
+// app.get('/*', (req, res) => {
+//     res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
+// })
+
+// we can update the catch all route like abelow
+app.all('*', (req, res) => {
     res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
 })
+
+
+//=================
 
 //middleware: builtin, custom, 3rd party
 
