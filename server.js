@@ -48,7 +48,7 @@ app.get('^/$|oldpage(.html)?', (req, res) => { //oldpage does not exists
 //     res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
 // })
 
-// we can update the catch all route like abelow
+// we can update the catch all route like abelow, app.all is for routes and catches all http methods at once
 app.all('*', (req, res) => {
 
     res.status(404);
