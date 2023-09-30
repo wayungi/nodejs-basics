@@ -12,8 +12,7 @@ const PORT = process.env.PORT || 3500;
 const cors = require('cors');
 
 
-// add the routes for subdir routes which were added through a router
-app.use('/subdir', require('./routes/subdir'));
+
 
 //This is how you apply middleware: NOte middle are applied with () brackets
 
@@ -33,6 +32,12 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 //All static routes should be put in the public folder
 app.use(express.static(path.join(__dirname, '/public'))); // serve static files from public folder
+
+
+// Routes
+
+// add the routes for subdir routes which were added through a router
+app.use('/subdir', require('./routes/subdir'));
 
 //('^/$|/index.html', (req, res) : must begin with a slash, end with a slash or index,html
 //('^/$|/index(.html)?', (req, res) : makes .html optional, route can work as /index
