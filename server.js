@@ -10,6 +10,11 @@ const app = express();
 const path =  require('path')
 const PORT = process.env.PORT || 3500;
 
+//This is how you apply middleware
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+app.use(express.static(path.join(__dirname, '/public'))); // serve static files from public folder
+
 //('^/$|/index.html', (req, res) : must begin with a slash, end with a slash or index,html
 //('^/$|/index(.html)?', (req, res) : makes .html optional, route can work as /index
 app.get('^/$|index(.html)?', (req, res) => { 
@@ -25,6 +30,8 @@ app.get('^/$|oldpage(.html)?', (req, res) => { //oldpage does not exists
 app.get('/*', (req, res) => {
     res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
 })
+
+//middleware: builtin, custom, 3rd party
 
 
 
