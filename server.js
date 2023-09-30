@@ -32,6 +32,8 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 //All static routes should be put in the public folder
 app.use(express.static(path.join(__dirname, '/public'))); // serve static files from public folder
+app.use('/subdir', express.static(path.join(__dirname, '/public'))); // serve static files from public folder
+
 
 
 // Routes
