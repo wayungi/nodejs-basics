@@ -9,13 +9,22 @@ const express = require('express')
 const app = express(); 
 const path =  require('path')
 const PORT = process.env.PORT || 3500;
+const cors = require('cors');
+
+//This is how you apply middleware: NOte middle are applied with () brackets
 
 //custome middleware
 app.use((req, res, next) => {
     console.log(req.method, req.path)
-})
+    next();
+});
 
-//This is how you apply middleware
+//Third party middleare:
+
+//! NOTE: You can add a whitelist to allow specific front-end domains to access this backend, check documentation 
+app.use(cors());
+
+
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 //All static routes should be put in the public folder
@@ -40,5 +49,12 @@ app.get('/*', (req, res) => {
 //middleware: builtin, custom, 3rd party
 
 
+
+// You can also catch errors using middleware
+app.use(function(err, req, res, next) {
+    console.log(err.stack)
+    res.status(500).send(err.message);
+    
+});
 
 app.listen(PORT, console.log(`server running on port ${PORT}`));
