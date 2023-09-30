@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const data = {};
-data.employees =  require('../data/employees.json');
+data.employees =  require('../../data/employees.json');
 
 
 //INTERSTING: params (in the url) vs body = (in the json body)
@@ -26,7 +26,6 @@ router.route('/')
     .delete((req, res) => {
         res.json({"id": req.body.id})
     });
-
 
 router.route(':/id')
     .get((req, res) => {
