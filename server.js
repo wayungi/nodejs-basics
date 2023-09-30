@@ -35,5 +35,4 @@ app.get('/*', (req, res) => {
 
 
 
-app.listen(PORT, console.log(`server running    res.sendFile(path.join(__dirname, 'views', 'index.html')); // 301 - permamnent redirect
-on port: ${PORT}`));
+app.listen(PORT, console.log(`server running on port ${PORT}`));
