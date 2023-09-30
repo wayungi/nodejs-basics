@@ -11,6 +11,10 @@ const path =  require('path')
 const PORT = process.env.PORT || 3500;
 const cors = require('cors');
 
+
+// add the routes for subdir routes which were added through a router
+app.use('/subdir', require('./routes/subdir'));
+
 //This is how you apply middleware: NOte middle are applied with () brackets
 
 //custome middleware
