@@ -38,6 +38,7 @@ app.use('/subdir', express.static(path.join(__dirname, '/public'))); // serve st
 
 // Routes
 
+// NOTE: express now supoports regex inside app.use('^/$')
 // add the routes for subdir routes which were added through a router
 app.use('/subdir', require('./routes/subdir'));
 
