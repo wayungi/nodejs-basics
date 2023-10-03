@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
-const data = {};
+const employeeController =  require('../../controllers/employeesController');
 
 //INTERSTING: params (in the url) vs body = (in the json body)
 
 router.route('/')
-    .get(getAllEmployees())
-    .post(createNewEmployee())
-    .put(updateEmployee())
-    .delete(deleteEmployee());
+    .get(employeeController.getAllEmployees())
+    .post(employeeController.createNewEmployee())
+    .put(employeeController.updateEmployee())
+    .delete(employeeController.deleteEmployee());
 router.route('/:id')
-    .get(getEmployee());
+    .get(employeeController.getEmployee());
 module.exports = router;
