@@ -24,15 +24,7 @@ const {v4: uuid} = require('uuid');
 router.route('/')
 // get all employees
     .get()
-    .post((req, res) => {
-        const user = {
-            "id": req.body.id,
-            'firstname': req.body.firstname,
-            'lastname': req.body.lastname
-        }
-        data.employees.push(user);
-        res.json(user)
-    })
+    .post()
 
 // edit employee
     .put((req, res) => {
