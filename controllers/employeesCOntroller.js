@@ -1,3 +1,21 @@
+const {v4: uuid} = require('uuid');
+
+
+// data.employees =  require('../../data/employees.json');
+data.employees =  [
+    {
+        "id":10,
+        "firstname": "Bilalo",
+        "lastname": "Ampaire"
+    },
+    {
+        id:11,
+        firstanme: 'Ismail',
+        lastname: 'Kizza'
+    }
+];
+
+
 const getAllEmployees = (req, res) => {
     res.json(data.employees);
 }
