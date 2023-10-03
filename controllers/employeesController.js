@@ -26,14 +26,14 @@ const createNewEmployee = (req, res) => {
 }
 
 const updateEmployee = (req, res) => {
-    const employeeToUpdate = data.employees.find((employee) => emplooyee.id === req.body.id)
+    const employeeToUpdate = data.employees.find((employee) => employee.id === +req.body.id)
 
     if(!employeeToUpdate) {
         return res.status(400).json({"error": `Eployee with id ${req.body.id} could not be found`})
     }
 
     if(req.body.firstname) employeeToUpdate.firstname = req.body.firstname
-    if(req.body.lastname) employeeToUpdate.lasstname = req.body.lastname
+    if(req.body.lastname) employeeToUpdate.lastname = req.body.lastname
 
     const filteredEmployees = data.employees.filter((employee) => employee.id !== +req.body.id);
     const unsortedEmpoyees = [...filteredEmployees, employeeToUpdate]
