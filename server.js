@@ -43,7 +43,7 @@ app.use('/subdir', express.static(path.join(__dirname, '/public'))); // serve st
 app.use('/', require('./routes/root'));
 app.use('/subdir', require('./routes/subdir'));
 app.use('/register', require('./routes/register'));
-app.use('/login', require('./routes/auth'));
+app.use('/auth', require('./routes/auth'));
 
 //api routes
 app.use('/employees', require('./routes/api/employees'));

@@ -20,7 +20,7 @@ const handleLogin = async(req, res) => {
     //evaluate password
     const match = bcrypt.compare(pwd, foundUser.password)
     if(match){
-        res.status(200).json({"user": foundUser})
+        res.status(200).json({"user": foundUser.username})
     }else{
         res.sendStatus(401)
     }
