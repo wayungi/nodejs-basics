@@ -60,13 +60,7 @@ router.route('/')
 
 router.route('/:id')
     .get((req, res) => {
-
-        console.log(req.params.id)
-        console.log(data.employees)
-
         const user = data.employees.find((user) => user.id === +req.params.id);
-        console.log(user)
-
         if(user) {
             res.json(user)
         }else {
