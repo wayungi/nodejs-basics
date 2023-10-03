@@ -50,15 +50,29 @@ router.route('/')
         }else {
             res.json({"error": "user not found"})
         }
-        
     })
+
     .delete((req, res) => {
-        res.json({"id": req.body.id})
+        const userToDelete = data.employees.find((user) => user.id === req.body.id);
+        data.employees = data.employees.filter((user) => user.id !== req.body.id)
+        res.json(userToDelete)
     });
 
 router.route('/:id')
     .get((req, res) => {
-        res.json({"id": req.params.id})
+
+        console.log(req.params.id)
+        console.log(data.employees)
+
+        const user = data.employees.find((user) => user.id === +req.params.id);
+        console.log(user)
+
+        if(user) {
+            res.json(user)
+        }else {
+            res.json({"error": "user not found"})
+        }
+       
     });
     
 
