@@ -3,7 +3,7 @@ const data = {
     employees: require('../model/employees.json'),
     setEmployees: (data) => this.employees = data
    };
-   
+
 // data.employees =  require('../../data/employees.json');
 // data.employees =  [
 //     {
@@ -23,13 +23,19 @@ const getAllEmployees = (req, res) => {
 }
 
 const createNewEmployee = (req, res) => {
-    const user = {
-        "id": req.body.id,
-        'firstname': req.body.firstname,
-        'lastname': req.body.lastname
+
+    if(!req.body.firstname || !req.body.lastname) {
+        return res.status(400).json({"error": "Fill in first & last name"})
     }
-    data.employees.push(user);
-    res.json(user)
+
+    const newEmployee = {
+        id: data.employees[data.employees.length - 1].id + 1 || 1,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname
+    }
+
+    data.setEmployees([...data.employees, newEmployee]);
+    res.json(newEmployee)
 }
 
 const updateEmployee = (req, res) => {
