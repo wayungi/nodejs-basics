@@ -42,6 +42,7 @@ app.use('/subdir', express.static(path.join(__dirname, '/public'))); // serve st
 // add the routes for subdir routes which were added through a router
 app.use('/', require('./routes/root'));
 app.use('/subdir', require('./routes/subdir'));
+app.use('/register', require())
 //api routes
 app.use('/employees', require('./routes/api/employees'));
 
