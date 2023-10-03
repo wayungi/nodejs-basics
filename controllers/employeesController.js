@@ -1,7 +1,7 @@
 const {v4: uuid} = require('uuid');
 const data = {
     employees: require('../model/employees.json'),
-    setEmployees: (data) => this.employees = data
+    setEmployees: function(data){this.employees = data}
    };
 
 // data.employees =  require('../../data/employees.json');
@@ -35,22 +35,23 @@ const createNewEmployee = (req, res) => {
     }
 
     data.setEmployees([...data.employees, newEmployee]);
-    res.json(newEmployee)
+    res.status(201).json(newEmployee)
 }
 
 const updateEmployee = (req, res) => {
-    let index = data.employees.findIndex((item) => item.id === req.body.id);
-    if(index !== -1){
-        const updatedUser = {
-            'id': req.body.id,
-            'firstname': req.body.firstname,
-            'lastname': req.body.lastname
-        }
-        data.employees[index] = updatedUser
-        res.json(updatedUser);
-    }else {
-        res.json({"error": "user not found"})
+    const employeeToUpdate = data.employees.find((employee) => emplooyee.id === req.body.id)
+
+    if(!employeeToUpdate) {
+        return res.status(400).json({"error": `Eployee with id ${req.body.id} could not be found`})
     }
+
+    if(req.body.firstname) employeeToUpdate.firstname = req.body.firstname
+    if(req.body.lastname) employeeToUpdate.lasstname = req.body.lastname
+
+    const filteredEmployees = data.employees.filter((employee) => employee.id !== +req.body.id);
+    const unsortedEmpoyees = [...filteredEmployees, employeeToUpdate]
+    data.setEmployees(unsortedEmpoyees.sort((a, b) => a.id > b.id ? 1 : a.id < b.id ? -1 : 0 ));
+    res.json(data.employees)
 }
 
 const deleteEmployee  = (req, res) => {
