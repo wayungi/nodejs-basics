@@ -47,7 +47,7 @@ const deleteEmployee  = (req, res) => {
         return res.status().json({"Error": `Employee with id ${req.body.id} was not found`})
     }
     const filteredEmployee = data.employees.filter((user) => user.id !== req.body.id)
-    data.setEmployeese(filteredEmployee)
+    data.setEmployees(filteredEmployee)
     res.json(userToDelete)
 }
 
