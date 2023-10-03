@@ -3,7 +3,18 @@ const router = express.Router();
 const path = require('path');
 const data = {};
 // data.employees =  require('../../data/employees.json');
-data.employees =  [];
+data.employees =  [
+    {
+        "id":10,
+        "firstname": "Bilalo",
+        "lastname": "Ampaire"
+    },
+    {
+        id:11,
+        firstanme: 'Ismail',
+        lastname: 'Kizza'
+    }
+];
 const {v4: uuid} = require('uuid');
 
 
@@ -11,6 +22,7 @@ const {v4: uuid} = require('uuid');
 //INTERSTING: params (in the url) vs body = (in the json body)
 
 router.route('/')
+// get all employees
     .get((req, res) => {
         res.json(data.employees);
     })
@@ -24,16 +36,16 @@ router.route('/')
         res.json(user)
     })
 
+// edit employee
     .put((req, res) => {
-        const updatedUser = {
-            'id': req.body.id,
-            'firstname': req.body.firstname,
-            'lastname': req.body.lastname
-        }
-        
-        let user = data.employees.filter((item) => item.id === req.body.id);
-        if(user){
-            user = updatedUser;
+        let index = data.employees.findIndex((item) => item.id === req.body.id);
+        if(index !== -1){
+            const updatedUser = {
+                'id': req.body.id,
+                'firstname': req.body.firstname,
+                'lastname': req.body.lastname
+            }
+            data.employees[index] = updatedUser
             res.json(updatedUser);
         }else {
             res.json({"error": "user not found"})
