@@ -7,10 +7,10 @@ const data = {};
 
 router.route('/')
 
-    .get()
-    .post()
-    .put()
-    .delete();
+    .get(getAllEmployees())
+    .post(createNewEmployee())
+    .put(updateEmployee())
+    .delete(deleteEmployee());
 router.route('/:id')
-    .get();
+    .get(getEmployee());
 module.exports = router;
