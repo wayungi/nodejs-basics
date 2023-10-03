@@ -4,20 +4,6 @@ const data = {
     setEmployees: function(data){this.employees = data}
    };
 
-// data.employees =  require('../../data/employees.json');
-// data.employees =  [
-//     {
-//         "id":10,
-//         "firstname": "Bilalo",
-//         "lastname": "Ampaire"
-//     },
-//     {
-//         id:11,
-//         firstanme: 'Ismail',
-//         lastname: 'Kizza'
-//     }
-// ];
-
 const getAllEmployees = (req, res) => {
     res.json(data.employees);
 }
@@ -65,12 +51,11 @@ const deleteEmployee  = (req, res) => {
 }
 
 const getEmployee = (req, res) => {
-    const user = data.employees.find((user) => user.id === +req.params.id);
-    if(user) {
-        res.json(user)
-    }else {
-        res.json({"error": "user not found"})
+    const employee = data.employees.find((user) => user.id === +req.params.id);
+    if(!employee) {
+        return res.json({"error": "user not found"})
     }
+    res.json(employee)
 }
 
 module.exports = {
