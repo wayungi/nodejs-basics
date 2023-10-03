@@ -23,12 +23,14 @@ const handleNewUser = async(req, res) => {
         const newUser = {username: user, password: hashedPwd}
         setUsers([...usersDB.users, newUser])
         //write the data to file
-        await fsPromises.writeFile(path.join(__dirname, '..', 'model', 'users.json'), JSON.stringify(usersDB.users))
-        console.log(usersDB.users)
+        await fsPromises.writeFile(
+            path.join(__dirname, '..', 'model', 'users.json'),
+            JSON.stringify(usersDB.users)
+        )
         res.status(201).json({"result": newUser});
     }catch(err){
         return res.status(500).json({"error": err.message})
     }
 }
 
-module.exports = handleNewUser
+module.exports = { handleNewUser };
