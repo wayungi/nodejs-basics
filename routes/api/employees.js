@@ -27,20 +27,7 @@ router.route('/')
     .post()
 
 // edit employee
-    .put((req, res) => {
-        let index = data.employees.findIndex((item) => item.id === req.body.id);
-        if(index !== -1){
-            const updatedUser = {
-                'id': req.body.id,
-                'firstname': req.body.firstname,
-                'lastname': req.body.lastname
-            }
-            data.employees[index] = updatedUser
-            res.json(updatedUser);
-        }else {
-            res.json({"error": "user not found"})
-        }
-    })
+    .put()
 
     .delete((req, res) => {
         const userToDelete = data.employees.find((user) => user.id === req.body.id);
