@@ -32,3 +32,13 @@ const deleteEmployee  = (req, res) => {
     data.employees = data.employees.filter((user) => user.id !== req.body.id)
     res.json(userToDelete)
 }
+
+const getEmployee = (req, res) => {
+    const user = data.employees.find((user) => user.id === +req.params.id);
+    if(user) {
+        res.json(user)
+    }else {
+        res.json({"error": "user not found"})
+    }
+   
+}
