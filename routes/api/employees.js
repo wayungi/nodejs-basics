@@ -29,11 +29,7 @@ router.route('/')
 // edit employee
     .put()
 
-    .delete((req, res) => {
-        const userToDelete = data.employees.find((user) => user.id === req.body.id);
-        data.employees = data.employees.filter((user) => user.id !== req.body.id)
-        res.json(userToDelete)
-    });
+    .delete();
 
 router.route('/:id')
     .get((req, res) => {

@@ -26,3 +26,9 @@ const updateEmployee = (req, res) => {
         res.json({"error": "user not found"})
     }
 }
+
+const deleteEmployee  = (req, res) => {
+    const userToDelete = data.employees.find((user) => user.id === req.body.id);
+    data.employees = data.employees.filter((user) => user.id !== req.body.id)
+    res.json(userToDelete)
+}
